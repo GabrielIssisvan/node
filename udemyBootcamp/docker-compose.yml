@@ -1,0 +1,22 @@
+version: '3.8'
+
+services: 
+        # Adicionando serviço NODE
+        node:
+            build: 
+                context: .
+                args:
+                  - NODE_ENV=development
+
+            command: ../node_modules/.bin/nodemon start
+
+            ports: 
+                - "3000:3000"
+
+            container_name: NodeCourse
+            volumes:
+                - .:/usr/src/node/app:delegated
+                - ./package.json:/usr/src/node/package.json
+                - ./package-lock.json:/usr/src/node/package-lock.json
+        
+            
